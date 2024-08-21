@@ -4,8 +4,9 @@ import textwrap
 from datetime import datetime
 from typing import Optional, List, Mapping, Any
 from utils import Markdown
-from langchain import PromptTemplate, OpenAI
-from langchain.chat_models import ChatOpenAI
+from langchain_community.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
 from langchain.callbacks.manager import CallbackManagerForLLMRun
 from langchain.chains.router import MultiPromptChain
 from langchain.chains import ConversationChain
@@ -48,8 +49,8 @@ class LLMLogger:
 
 
 class LoggerLLMModel(LLM):
-    import langchain
-    llm: langchain.llms.openai.OpenAI
+    import langchain_community.llms 
+    llm: langchain_community.llms.openai.OpenAI
 
     @property
     def _llm_type(self) -> str:
@@ -69,8 +70,8 @@ class LoggerLLMModel(LLM):
 
 
 class LoggerChatModel(SimpleChatModel):
-    import langchain
-    llm: langchain.chat_models.openai.ChatOpenAI
+    import langchain_openai
+    llm: langchain_openai.ChatOpenAI
 
     @property
     def _llm_type(self) -> str:
